@@ -1,0 +1,13 @@
+package ${jci.packageName};
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class ${jci.fullName} extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.${jci.noSuffixXmlName});
+    }
+}

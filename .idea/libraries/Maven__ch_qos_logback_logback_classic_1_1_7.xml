@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Maven: ch.qos.logback:logback-classic:1.1.7">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.1.7/logback-classic-1.1.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.1.7/logback-classic-1.1.7-javadoc.jar!/" />
+      <root url="jar://F:/1java/jsoup-1.10.3/jsoup-1.10.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.1.7/logback-classic-1.1.7-sources.jar!/" />
+      <root url="jar://F:/jfinal/beetl series/beetl-2.5.2-all/beetl-2.5.2-sources.jar!/" />
+      <root url="jar://F:/1java/jsoup-1.10.3/jsoup-1.10.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

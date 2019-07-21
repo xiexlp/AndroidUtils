@@ -1,0 +1,33 @@
+//在父activity中做
+//声明
+ ${mainFragmentName.className}Fragment newsFragment;
+
+
+ //初始化
+${mainFragmentName.instanceName}Fragment =new ${mainFragmentName.className}Fragment();
+
+
+//放到fragment list中去
+fragments.add(${mainFragmentName.instanceName}Fragment);
+
+//调用
+else if (checkedId == R.id.rb_find) {
+                    position = 2;
+                    System.out.println("position :"+position);
+//                        dismissAnmiation();
+                    //初始化数据
+//                        int currentTab = typeFragment.getCurrentTab();
+//                        if (currentTab == 0) {
+//                            if (typeFragment.listFragment != null) {
+//                                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                                transaction.show(typeFragment.listFragment).commit();
+//                            }
+//                        } else {
+//                            if (typeFragment.tagFragment != null) {
+//                                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                                transaction.show(typeFragment.tagFragment).commit();
+//                            }
+//                        }
+                }
+
+

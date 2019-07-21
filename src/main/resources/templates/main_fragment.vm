@@ -1,0 +1,203 @@
+package ${jci.packageName};
+
+
+import android.js.com.myapplication.feature.R;
+import android.js.com.myapplication.feature.fragment.topic.LikestFragment;
+import android.js.com.myapplication.feature.fragment.topic.NewestFragment;
+import android.js.com.myapplication.feature.fragment.topic.RepliestFragment;
+import android.js.com.myapplication.feature.fragmentmarket.submood.RankDownFragment;
+import android.js.com.myapplication.feature.fragmentmarket.submood.RankMarketFragment;
+import android.js.com.myapplication.feature.fragmentmarket.submood.RankUpFragment;
+import android.js.com.myapplication.feature.fragmentmarket.submood.WatchListFragment;
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+#foreach( $s in $subNameList )
+import ${s.packageName}.${s.className}Fragment;
+#end
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ${mainFragmentName.className}Fragment extends Fragment {
+
+   // ViewPager forum_topics_pager;
+
+    private final String[] titles = { "关注", "市值排行", "涨幅榜","跌幅榜" };
+
+    TabLayout ${mainFragmentName.instanceName}_tablayout;
+
+
+    NewestFragment newestFragment;
+    RepliestFragment repliestFragment;
+    LikestFragment likestFragment;
+
+
+
+    WatchListFragment watchListFragment;
+    RankMarketFragment rankMarketFragment;
+    RankDownFragment rankDownFragment;
+    RankUpFragment rankUpFragment;
+
+    int fragmentsSize=0;
+
+    #foreach( $s in $subNameList )
+        ${s.className}Fragment ${s.instanceName}Fragment;
+    #end
+
+
+
+
+
+    public ${mainFragmentName.className}Fragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
+        View view= inflater.inflate(R.layout.fragment_${mainFragmentName.instanceName}, container, false);
+        initView(view);
+        return view;
+    }
+
+    private void initView(View view){
+        ViewPager ${mainFragmentName.instanceName}_pager = view.findViewById(R.id.${mainFragmentName.instanceName}_pager);
+
+        ${mainFragmentName.instanceName}_tablayout = (TabLayout) view.findViewById(R.id.${mainFragmentName.instanceName}_tablayout);
+        fragmentsSize = ${subSize};
+        for(int i=0;i<fragmentsSize;i++){
+            //fragments.add(new TabFragment());
+            ${mainFragmentName.instanceName}_tablayout.addTab(${mainFragmentName.instanceName}_tablayout.newTab());
+           // topics_tablayout.getTabAt(i).setText(titles[i]);
+        }
+
+
+        ${mainFragmentName.instanceName}_pager.setAdapter(new ForumPagerAdapter(getChildFragmentManager()));
+        ${mainFragmentName.instanceName}_tablayout.setupWithViewPager(${mainFragmentName.instanceName}_pager,false);
+        ${mainFragmentName.instanceName}_pager.setOffscreenPageLimit(2);
+
+        for(int i=0;i<fragmentsSize;i++){
+            //fragments.add(new TabFragment());
+           // topics_tablayout.addTab(new TabFragment());
+           ${mainFragmentName.instanceName}_tablayout.getTabAt(i).setText("${mainFragmentName.instanceName}-"+i);
+           //${mainFragmentName.instanceName}_tablayout.getTabAt(i).setText(titles[i]);
+        }
+
+
+       ${mainFragmentName.instanceName}_tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                System.out.println("选中的文本Tab:"+tab.getText());
+                //Toast.makeText(getActivity(), "选中的"+tab.getText(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                System.out.println("未选中的文本Tab:"+tab.getText());
+                //Toast.makeText(getActivity(), "未选中的"+tab.getText(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                System.out.println("复选的文本Tab:"+tab.getText());
+                //Toast.makeText(getActivity(), "复选的"+tab.getText(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        //topics_tablayout.setTabMode(TabLayout.MODE_FIXED);
+       // topics_tablayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+       // topics_tablayout.setTabMode(TabLayout.GRAVITY_FILL);
+
+
+
+//        //重新设置点击事件
+//        for (int i = 0; i < topics_tablayout.getTabCount(); i++) {
+//            TabLayout.Tab tab=topics_tablayout.getTabAt(i);
+//            if (tab!=null){
+//                tab.setCustomView((View) forum_topics_pager.getTag(i));
+//                if (tab.getCustomView()!=null){
+//                    View tabView=  (View)tab.getCustomView().getParent();
+//                    tabView.setTag(i);
+//                    tabView.setOnClickListener(mTabOnClickListener);
+//                }
+//            }
+//        }
+
+
+    }
+
+//    private View.OnClickListener mTabOnClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            System.out.println("点击Tab");
+//            int position= (int) v.getTag();
+//            if (position==0 &&topics_tablayout.getTabAt(position).isSelected()==true){
+//                Toast.makeText(getActivity(), "点击了第一个tab", Toast.LENGTH_SHORT).show();
+//            }else if (position==1 && topics_tablayout.getTabAt(position).isSelected()==true){
+//                Toast.makeText(getActivity(), "点击了第二个tab", Toast.LENGTH_SHORT).show();
+//            }else {
+//                TabLayout.Tab tab = topics_tablayout.getTabAt(position);
+//                if (tab != null) {
+//                    tab.select();
+//                }
+//            }
+//        }
+//    };
+
+
+
+
+    public class ForumPagerAdapter extends FragmentStatePagerAdapter {
+
+        public ForumPagerAdapter(FragmentManager fm) {
+            super(fm);
+            // TODO Auto-generated constructor stub
+        }
+
+        //private final String[] titles = { "同学", "同事", "好友" };
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "fragment-"+position;
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentsSize;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                #foreach( $sub in $subNameList )
+                    #set($a=${velocityCount})
+                    #set($b=$a - 1)
+                    case $b:
+                        if (null == ${sub.instanceName}Fragment) {
+                             ${sub.instanceName}Fragment = new ${sub.className}Fragment();
+                        }
+                        return ${sub.instanceName}Fragment;
+                #end
+                default:
+                    #set($firstFragment=$subNameList.get(0))
+                    return ${firstFragment.instanceName}Fragment;
+            }
+        }
+
+    }
+
+
+}

@@ -1,0 +1,17 @@
+//声明，放在声明中
+//TextView et_main_message;
+${aci.className} ${aci.instanceName};
+
+//实例化，放在onCreate方法中
+${aci.instanceName}=findViewById(R.id.${aci.instanceName});
+//动作，放在onCreate方法中
+${aci.instanceName}.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+//取值
+String  ${aci.instanceName}_value= ${aci.instanceName}.getText().toString();
